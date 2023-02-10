@@ -1,0 +1,8 @@
+interfaces:
+  robot: enp4s0
+  operator: enp3s0
+combox:
+  cli:
+    working_directory: /home/adrz/vsting/combox_monitor/dist/cli
+    runnable: ./cli
+    executable: true

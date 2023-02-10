@@ -1,0 +1,26 @@
+host: localhost
+port: 6001
+username: root
+password: root
+database: combox
+interval: 1
+db_interval: 3
+retry_interval: 10
+backing_filename: ./combox-monitor.backup
+zmq_port: null
+tags:
+  robot: evaluated-robot
+interface_tags:
+  vsting-br:
+    technology: Bridge
+  enp4s0:
+    technology: Robot
+  enp3s0:
+    technology: Operator
+traffic:
+  interfaces:
+  - enp4s0
+  - enp3s0
+  stats:
+  - rx_bytes
+  - tx_bytes
