@@ -2,20 +2,25 @@
 # vSTING-SA (Non-Final)
 **virtual Spatially distributed Traffic and INterference Generator - Standalone**
 
-*This work has been supported by the German Center for Rescue Robotics (DRZ)
-and funded by the German Federal Ministry of Education and Research (BMBF)
-in projects A-DRZ (13N14857) and DRZ (13N16476).*
-
-[[_TOC_]]
-
-## 1. Introduction
-
 The vSTING is a solution for evaluating teleoperated robots and other network reliant systems or applications in challenging network environments such as ones with heavy traffic or interference. It is adjusted for practical usage and ease of installation for system evaluations and experiments.
 
-## 2. How it works
+***This work has been supported by the German Center for Rescue Robotics (DRZ)
+and funded by the German Federal Ministry of Education and Research (BMBF)
+in projects A-DRZ (13N14857) and DRZ (13N16476).***
+
+<br/>
+<br/>
+
+![tudo](figs/logos/tu-cni-small.png "TU Dortmund University - Communications Network Institute")
+![tudo](figs/logos/drz-small.png "German Rescue Robotics Center")
+
+<br/>
+<br/>
+
+# How it works
 
 vSTING uses network emulation to recreate degraded network environments. One main advantage is the lack of additional software installation on the evaluated systems. vSTING runs on a separate device tasked with encapsulating the network degradation.
-The vSTING device must be installed between operator and robot to introduce network degradation on the communication link between them. The resulting architechture  is illustrated in Fig. 1
+The vSTING device must be installed between operator and robot to introduce network degradation on the communication link between them. The resulting architechture  is illustrated in the figure below.
 
 ![The vSTING concept\label{fig:vsting-concept}](figs/vsting-concept.png)
 
@@ -24,7 +29,7 @@ The vSTING device must be installed between operator and robot to introduce netw
 This results in a hardware requirement for the device on which vSTING is installed: it must feature at least two RJ45 ports to be able to support the two ethernet links meant for robot and operator. A third port can be required to stand for the control channel, to connect the device on which the vSTING user interface will be displayed. This link can however be also be realized in other ways, such as over WiFi. 
 
 
-## 3. Installation
+# Installation
 
 As mentionned previously, vSTING is a software solution running on adequately configured hardware. Two installation methods are supported:
 
@@ -33,7 +38,7 @@ As mentionned previously, vSTING is a software solution running on adequately co
 - **installation on custom devices**: This method requires additional configuration steps on your device and on the downloaded software bundle.
 
 
-### 3.1 Installation tutorial on a supported device (using Ubuntu 20.04)
+## Install on a supported device
 
 the software bundled was preconfigured and tested on some devices and system images ready to be used were created. The following indications were tested and are therefore supported for the following system:  
 
@@ -85,7 +90,7 @@ After the image is written to the SD-card, eject it from the computer:
 
 ![APU ports annotated\label{fig:apu-ports-annotated}](figs/apu-ports-annotated.png)
 
-- give your computer the fixed ip `10.40.1.10` with network mask `/24` or `255.255.255.0` on the wired network interface. The annotated steps in [section 6.1](#61-set-a-static-ip-address-on-your-device)  might be of help.
+- give your computer the fixed ip `10.40.1.10` with network mask `/24` or `255.255.255.0` on the wired network interface. The annotated steps in [the appendix](#set-a-static-ip-address-on-your-device)  might be of help.
 
 - make sure the connection is effective by trying to reach the APU. The output of the following command should display the round-trip time to the APU:
 
@@ -100,7 +105,7 @@ The **installation** of your vSTING device is now **completed**.
 
 **NB**: *When using the vSTING to induce latency, a destination IP must be provided to measure the round trip time towards that destination. The perform these measurements, the vSTING needs an IP address as well. In case you are using vSTING  in a network without automatic assignment of IP adresses (i.e DHCP), you must further configure the vSTING to assign it an address in the valid network range. How to do this is explained in the usage section.*
 
-### 3.2 Installation on custom device
+## Install on Personal Computer
 
 It is possible to install the vSTING software on another device, such as a personal computer. However the requirement of 2 network ports must be met. USB to Ethernet Adapter can be used to provide an additional network port, as personal computers usually have only one network port.
 
@@ -152,19 +157,19 @@ The steps to install vSTING on your personal computer are as follows:
   This start is only needed after a fresh installation. the vSTING services will automatically run on computer start.
 
 
-## 4. Updates
+# Updates
 
 To update vsting to the latest, version run the `update.sh` script found in the scripts folder. The script checks for available newer versions, stops the current version, then proceeds to download and install the latest version. If the vsting services do not startup correctly after the update, the update is rolled back and the previous version is installed back.  
 The required password is: `robocupvstingkey`
 
-## 5. Usage
+# Usage
 
-The user interface of vSTING offers a control and monitoring section. In the control section, the network constraints can be defined, enabled and disabled. The monitoring section presents the user with live network metrics the ascertain the effect of the network constratins.
+The user interface of vSTING offers a control and monitoring section. In the control section, the network constraints can be defined, enabled and disabled. The monitoring section presents the user with live network metrics the ascertain the effect of the network constraints.
 
-### 5.1 Control Section
+## Control Section
 The control section has two variants between which the user can switch freely by clicking on the settings button at the right of the title of the control section. The two variants of the control section will now be presented in more detail.
 
-#### 5.1.1 Simple Controls
+### Simple Controls
 The first variant of the control section, named `simple controls`, provides a simplified way of enabling and disabling network constraints. In this variant, predefined network constraint modes are presented to the user:
 
 - Latency: creates 100 ms additional latency on the network link  
@@ -176,13 +181,13 @@ The user can then activate a constraint mode by clicking on it and disable it by
 
 ![vSTING simple controls](figs/simple-controls.PNG)
 
-#### 5.1.2 Expert Controls
+### Expert Controls
 
 The `expert controls` is the second variant of the control section. It offers more control over the strength of the network degradation. Furthermore, the network constraints can be applied either symmetrically (same degradation from and to the robot) or asymmetrically (data packets sent to the robot experience difference degradation than packets sent from the robot).
 
 ![vSTING expert controls](figs/expert-controls.PNG)
 
-### 5.2 Monitoring Section
+## Monitoring Section
 
 The monitoring section provides insight over the following performance indicators:
 
@@ -193,22 +198,41 @@ The monitoring section provides insight over the following performance indicator
 
 ![vSTING metrics monitoring](figs/monitoring.PNG)
 
-### 5.3 IP-Address Settings for traffic measurements
+## IP-Address Settings for traffic measurements
 
 t.b.d.
 
-#### 5.3.1 Set Destination IP
+### Set Destination IP
 
 t.b.d.
 
-#### 5.3.2 Set Source IP (if no DHCP is avaiable)
+### Set Source IP (if no DHCP is avaiable)
 
 t.b.d.
 
+# Related Publications
+- Manuel Patchou, Janis Tieman, Christian Arendt, Stefan Böcker and Christian Wietfeld, [**Realtime Wireless Network Emulation for Evaluation of Teleoperated Mobile Robots**](https://cni.etit.tu-dortmund.de/storages/cni-etit/r/Research/Publications/2022/Patchou_2022_SSRR/Patchou_SSRR.pdf), In *IEEE Symposium on Safety, Security, and Rescue Robotics (SSRR)*, 2022.
 
-## 6. Appendix
 
-### 6.1 Set a static IP address on your device
+# Acknowledgements
+
+To acknowledge us in your publication(s) please refer to the following publication:
+
+```tex
+@InProceedings{Patchou2022a,
+	Author = {Manuel Patchou, Janis Tieman, Christian Arendt, Stefan Böcker and Christian Wietfeld},
+	Title = {Realtime Wireless Network Emulation for Evaluation of Teleoperated Mobile Robots},
+	Booktitle = {2022 IEEE Symposium on Safety, Security, and Rescue Robotics (SSRR)},
+	Year = {2022},
+	Address = {Sevilla, Spain},
+	Month = nov,
+	Publisher = {IEEE},
+	Doi = {10.1109/SSRR56537.2022.10018773}
+}
+```
+# Appendix
+
+## Set a static IP address on your device
 
 ![Set IP Address - Step 1](figs/ipset-step-1.png)
 
