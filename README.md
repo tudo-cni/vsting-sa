@@ -26,7 +26,7 @@ The vSTING device must be installed between operator and robot to introduce netw
 
 <!-- <img src="figs/vsting-concept.svg" width="70%"> -->
 
-This results in a hardware requirement for the device on which vSTING is installed: it must feature at least two RJ45 ports to be able to support the two ethernet links meant for robot and operator. A third port can be required to stand for the control channel, to connect the device on which the vSTING user interface will be displayed. This link can however be also be realized in other ways, such as over WiFi. 
+This results in a hardware requirement for the device on which vSTING is installed: it must feature at least two RJ45 ports to be able to support the two ethernet links meant for robot and operator. A third port can be required to stand for the control channel, to connect the device on which the vSTING user interface will be displayed. This link can however be also be realized in other ways, such as over WiFi or by installing vSTING on a device with display and input devices.
 
 
 # Installation
@@ -58,25 +58,25 @@ The following instructions will guide you through the download of the vsting sys
 
 Starting on the personal computer:
 
-- install packages required for the setup process:
+- Install packages required for the setup process:
 
         sudo apt install -y coreutils pv wget gzip git
 
-- clone the vsting repository:
+- Clone the vsting repository:
 
         git clone https://github.com/tudo-cni/vsting-sa.git
 
-- enter the scripts folder found in the cloned folder, make the scripts executable and download the system image by running the download script:
+- Enter the scripts folder found in the cloned folder, make the scripts executable and download the system image by running the download script:
 
         (cd vSTING-SA/scripts && chmod +x *.sh && ./download-image-apu4d4.sh)
 
   **NB**: *The image file's size is around 1.5GB, make sure you have enough free space on your system, and that you are not using a metered internet connection. The download may take more or less time depending on your internet speed.*
 
-- insert the SD-card in the personal computer and make sure it is available. If it is, you should be able to find the sdcard device file in the `dev` folder. It usually starts  with either `mmcblk` or `sd`. you can also open the `disks` application and look for the sd-card device file as illustrated in Fig. \ref{fig:find-sd-card-device}  below:  
+- Insert the SD-card in the personal computer and make sure it is available. If it is, you should be able to find the sdcard device file in the `dev` folder. It usually starts  with either `mmcblk` or `sd`. you can also open the `disks` application and look for the sd-card device file as illustrated in Fig. \ref{fig:find-sd-card-device}  below:  
 
 ![Identify your SD-card device file \label{fig:find-sd-card-device}](figs/sd-card-check.png)
 
-- install the vsting image on the sdcard by running the image installation script `install-image-apu4d4.sh` with your *sdcard device file* and the *downloaded image file's name* as arguments. This step can take a while.  
+- Install the vsting image on the sdcard by running the image installation script `install-image-apu4d4.sh` with your *sdcard device file* and the *downloaded image file's name* as arguments. This step can take a while.  
 As an example, provided the sdcard device is `mmcblk0` and the image file is named `apu-vsting-sa.img.gz`, the command to run in your terminal would look like this: 
 
         ./install-image-apu4d4.sh /dev/mmcblk0 apu-vsting-sa.img.gz
@@ -84,22 +84,22 @@ As an example, provided the sdcard device is `mmcblk0` and the image file is nam
 
 After the image is written to the SD-card, eject it from the computer:
 
-- insert the SD-card in the APU 4D4 and power it up.
+- Insert the SD-card in the APU 4D4 and power it up.
 
-- connect your computer using an ethernet cable to the APU on the ethernet port `enp1s0` (the first one from the right while the APU is upside down, the closest one the  serial port and farthest from the USB ports). Fig.\ref{fig:apu-ports-annotated} below shows the annotated network ports of the APU 4D4.
+- Connect your computer using an ethernet cable to the APU on the ethernet port `enp1s0` (the first one from the right while the APU is upside down, the closest one the  serial port and farthest from the USB ports). Fig.\ref{fig:apu-ports-annotated} below shows the annotated network ports of the APU 4D4.
 
 ![APU ports annotated\label{fig:apu-ports-annotated}](figs/apu-ports-annotated.png)
 
-- give your computer the fixed ip `10.40.1.10` with network mask `/24` or `255.255.255.0` on the wired network interface. The annotated steps in [the appendix](#set-a-static-ip-address-on-your-device)  might be of help.
+- Give your computer the fixed ip `10.40.1.10` with network mask `/24` or `255.255.255.0` on the wired network interface. The annotated steps in [the appendix](#set-a-static-ip-address-on-your-device)  might be of help.
 
-- make sure the connection is effective by trying to reach the APU. The output of the following command should display the round-trip time to the APU:
+- Make sure the connection is effective by trying to reach the APU. The output of the following command should display the round-trip time to the APU:
 
         ping 10.40.1.1
 
 
 Once you have ascertained that the connection is effective, you can start using vSTING. to this end:
 
-- open the following URL in the browser: `http://kn-adrz-vsting.local`. The vSTING  user interface should be visible.
+- Open the following URL in the browser: `http://kn-adrz-vsting.local`. The vSTING  user interface should be visible.
 
 The **installation** of your vSTING device is now **completed**.
 
@@ -114,15 +114,15 @@ The materials required for installing vSTING on a personal computer are as follo
 - one personal computer with at least one ethernet port
 - eventually, one USB to ethernet adapter, in case the personal computer features only one ethernet port.
 
-![Required materials for the PC installation](figs/materials-pc-install.png){width=70%}
+![Required materials for the PC installation](figs/materials-pc-install.png)
 
 
 The steps to install vSTING on your personal computer are as follows:
-- install packages required for the installation process:
+- Install packages required for the installation process:
 
         sudo apt install -y coreutils sed wget git python3 iptables-persistent network-manager
 
-- install docker and docker-compose by following this [tutorial](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository). If you already have docker installed you can skip this step, but make sure the version requirements specified below are met.
+- Install docker and docker-compose by following this [tutorial](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository). If you already have docker installed you can skip this step, but make sure the version requirements specified below are met.
 
   **NB**: *Don't forget to add your user to the docker group with following command*
 
@@ -133,34 +133,70 @@ The steps to install vSTING on your personal computer are as follows:
 
         sudo ln -s <docker-compose_executable_path> /usr/local/bin/docker-compose
 
-- clone the vsting repository:
+- Clone the vsting repository:
 
         git clone https://github.com/tudo-cni/vsting-sa.git
 
-- enter the scripts folder found in the cloned folder, make the scripts executable and download the vsting release by running the download script:
+- Enter the scripts folder found in the cloned folder, make the scripts executable and download the vsting release by running the download script:
 
         (cd vsting-sa/scripts && chmod +x *.sh && ./download-release.sh)
+- vSTING requires two network interfaces. The network interfaces connected to the ethernet ports of your computer must be identified. To list the network interfaces present on your system use:
 
-- enter the release folder and configure it for your machine by running the configure script. For the configuration of vSTING, you need to specify the two network interfaces which are going to connect the robot and the operator. The configuration will create a network bridge to bind the two available network interfaces together and add the interface names in the configuration files of the vSTING submodules. Therefore, the names of the network interfaces must be provided as arguments to the configuration script like in the example below. Be sure to place the network interface connected to the robot first, and the one connected to the operator second.
+        ls /sys/class/net
+
+- The identified network interfaces must be made available. use the network manager to identy network connections which might be using these interfaces with the following:
+
+        nmcli connection 
+
+  Look up the network interfaces' names in the `DEVICE` column to find out which connections are using them.
+
+- Disable the connections using the network interfaces:
+
+        sudo nmcli connection down <connection-name>
+
+- Enter the release folder and configure it for your machine by running the configuration script (setup-custom-device.sh). For the configuration of vSTING, you need to specify the two network interfaces which were identified and secured previously. The configuration script will create a network bridge to connect the robot and the operator together through these network interfaces and add the interface names in the configuration files of the vSTING submodules.  
+  Therefore, the names of the network interfaces must be provided as arguments to the configuration script like in the example below. 
+
+  ***NB**: In the snippet below `enp4s0` and `enp3s0` are just examples. make sure to replace them with the names of the network interfaces present on your computer. Also, the network interface connected to the robot must come first, and then the one connected to the operator.*
 
         (cd vsting-sa/scripts && ./setup-custom-device.sh enp4s0 enp3s0)
 
-- install the release on your system by running the install script:
+- After the configuration, make sure that the network bridge is activated by checking the active connections once more:
+
+        nmcli connection
+
+![vSTING network bridge connections](figs/vsting-bridge-netcon.png "vSTING network bridge connections")
+
+  The following connections should be active: vsting-bridge, vsting-br-operator, vsting-br-robot. If not, activate them manually with:
+
+        nmcli connection up vsting-bridge vsting-br-operator vsting-br-robot
+
+- Now that the hardware is configured and the software release as well, install the release on your system by running the install script:
 
         (cd ~/vsting && ./install.sh)
 
 - vSTING can now be started with the following command:
 
         (cd ~/vsting && ./vsting.sh start)
-        
+
   Once it is started you should be able to see the user interface by opening the following URL in your browser: `http://localhost`.
   This start is only needed after a fresh installation. the vSTING services will automatically run on computer start.
 
+- to stop or restart the vSTING, use:
 
+        (cd ~/vsting && ./vsting.sh stop)
+  ***NB**: This only stops the vSTING submodules. but they will be starting again after the next reboot. to stop vSTING in a persistent way, run the uninstall script:*
+
+        (cd ~/vsting && ./vsting.sh stop && ./uninstall.sh)
+        
+
+  Furthermore, to use the network ports of your computer normally again, the vsting network bridge must be disabled or deleted. To delete it:
+
+        (cd ~/vsting-sa/scripts && ./delete-vsting-bridge.sh)
 # Updates
 
-To update vsting to the latest, version run the `update.sh` script found in the scripts folder. The script checks for available newer versions, stops the current version, then proceeds to download and install the latest version. If the vsting services do not startup correctly after the update, the update is rolled back and the previous version is installed back.  
-The required password is: `robocupvstingkey`
+To update vSTING to the latest, version run the `update.sh` script found in the release folder. The script checks for available newer versions, stops the current version, then proceeds to download and install the latest version. If the vsting services do not startup correctly after the update, the update is rolled back and the previous version is installed back.  
+In case your perform the update on a provided system image, the required user password is: `robocupvstingkey`
 
 # Usage
 
