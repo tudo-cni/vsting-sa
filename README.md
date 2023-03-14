@@ -111,7 +111,7 @@ It is possible to install the vSTING software on another device, such as a perso
 
 The materials required for installing vSTING on a personal computer are as follows:
 
-- one personal computer with x86-64 CPU and Ubuntu 18.04 or 20.04 installed with at least one ethernet port. later Ubuntu releases might eventually work, but have not been tested at this point in time.
+- one personal computer with **x86-64 CPU** and **Ubuntu 18.04 or 20.04** installed with at least one ethernet port. later Ubuntu releases might eventually work, but have not been tested at this point in time.
 - eventually, one USB to ethernet adapter, in case the personal computer features only one ethernet port.
 
 ![Required materials for the PC installation](figs/materials-pc-install.png)
