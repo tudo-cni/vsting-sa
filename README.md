@@ -40,7 +40,7 @@ As mentionned previously, vSTING is a software solution running on adequately co
 
 ## Install on a supported device
 
-the software bundled was preconfigured and tested on some devices and system images ready to be used were created. The following indications were tested and are therefore supported for the following system:  
+the software bundle was preconfigured and tested on some devices and system images ready to be used were created. The following indications were tested and are therefore supported for the following system:  
 
 - [APU-4D4](https://www.apu-board.de/produkte/apu4d4.html)
 
@@ -111,7 +111,7 @@ It is possible to install the vSTING software on another device, such as a perso
 
 The materials required for installing vSTING on a personal computer are as follows:
 
-- one personal computer with at least one ethernet port
+- one personal computer with x86-64 CPU and Ubuntu 18.04 or 20.04 installed with at least one ethernet port. later Ubuntu releases might eventually work, but have not been tested at this point in time.
 - eventually, one USB to ethernet adapter, in case the personal computer features only one ethernet port.
 
 ![Required materials for the PC installation](figs/materials-pc-install.png)
