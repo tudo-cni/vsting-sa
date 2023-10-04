@@ -3,7 +3,7 @@
 # download next version
 echo "downloading vsting release in your home folder..."
 mkdir download
-wget https://tu-dortmund.sciebo.de/s/UL0g6TDB7qJQqLx/download -O download/vsting.zip
+wget https://tu-dortmund.sciebo.de/s/07qtGatRIP2VxFo/download -O download/vsting.zip
 unzip download/vsting.zip -d download
 mv download/vsting-sa ~/vsting
 chmod +x ~/vsting/*.sh
