@@ -6,7 +6,7 @@ The vSTING is a solution for evaluating teleoperated robots and other network re
 
 ***This work has been supported by the German Center for Rescue Robotics (DRZ)
 and funded by the German Federal Ministry of Education and Research (BMBF)
-in projects A-DRZ (13N14857) and DRZ (13N16476).***
+in projects A-DRZ (13N14857), DRZ (13N16476) and via the 6GEM research hub (16KISK038).***
 
 <br/>
 <br/>
